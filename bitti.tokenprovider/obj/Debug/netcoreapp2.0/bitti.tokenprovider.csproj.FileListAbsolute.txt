@@ -1,0 +1,16 @@
+/home/rafael/_desenvolvimento/onpersonal-server/Src/bitti.tokenprovider/bin/Debug/netcoreapp2.0/bitti.tokenprovider.deps.json
+/home/rafael/_desenvolvimento/onpersonal-server/Src/bitti.tokenprovider/bin/Debug/netcoreapp2.0/bitti.tokenprovider.dll
+/home/rafael/_desenvolvimento/onpersonal-server/Src/bitti.tokenprovider/bin/Debug/netcoreapp2.0/bitti.tokenprovider.pdb
+/home/rafael/_desenvolvimento/onpersonal-server/Src/bitti.tokenprovider/obj/Debug/netcoreapp2.0/bitti.tokenprovider.csproj.CoreCompileInputs.cache
+/home/rafael/_desenvolvimento/onpersonal-server/Src/bitti.tokenprovider/obj/Debug/netcoreapp2.0/bitti.tokenprovider.AssemblyInfoInputs.cache
+/home/rafael/_desenvolvimento/onpersonal-server/Src/bitti.tokenprovider/obj/Debug/netcoreapp2.0/bitti.tokenprovider.AssemblyInfo.cs
+/home/rafael/_desenvolvimento/onpersonal-server/Src/bitti.tokenprovider/obj/Debug/netcoreapp2.0/bitti.tokenprovider.dll
+/home/rafael/_desenvolvimento/onpersonal-server/Src/bitti.tokenprovider/obj/Debug/netcoreapp2.0/bitti.tokenprovider.pdb
+/home/rafael/_desenvolvimento/OndeTem/src/Server/bitti.tokenprovider/bin/Debug/netcoreapp2.0/bitti.tokenprovider.deps.json
+/home/rafael/_desenvolvimento/OndeTem/src/Server/bitti.tokenprovider/bin/Debug/netcoreapp2.0/bitti.tokenprovider.dll
+/home/rafael/_desenvolvimento/OndeTem/src/Server/bitti.tokenprovider/bin/Debug/netcoreapp2.0/bitti.tokenprovider.pdb
+/home/rafael/_desenvolvimento/OndeTem/src/Server/bitti.tokenprovider/obj/Debug/netcoreapp2.0/bitti.tokenprovider.csproj.CoreCompileInputs.cache
+/home/rafael/_desenvolvimento/OndeTem/src/Server/bitti.tokenprovider/obj/Debug/netcoreapp2.0/bitti.tokenprovider.AssemblyInfoInputs.cache
+/home/rafael/_desenvolvimento/OndeTem/src/Server/bitti.tokenprovider/obj/Debug/netcoreapp2.0/bitti.tokenprovider.AssemblyInfo.cs
+/home/rafael/_desenvolvimento/OndeTem/src/Server/bitti.tokenprovider/obj/Debug/netcoreapp2.0/bitti.tokenprovider.dll
+/home/rafael/_desenvolvimento/OndeTem/src/Server/bitti.tokenprovider/obj/Debug/netcoreapp2.0/bitti.tokenprovider.pdb

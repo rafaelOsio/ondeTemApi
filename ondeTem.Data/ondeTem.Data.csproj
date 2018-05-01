@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pomelo.AspNetCore.Extensions" Version="2.0.0-rtm-10044" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.0.0.1" />
+
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />  
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ondeTem.Domain\ondeTem.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

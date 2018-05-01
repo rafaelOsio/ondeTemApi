@@ -1,0 +1,10 @@
+/home/rafael/_desenvolvimento/OndeTem/src/Server/ondeTem.Domain/bin/Debug/netcoreapp2.0/ondeTem.Domain.deps.json
+/home/rafael/_desenvolvimento/OndeTem/src/Server/ondeTem.Domain/bin/Debug/netcoreapp2.0/ondeTem.Domain.dll
+/home/rafael/_desenvolvimento/OndeTem/src/Server/ondeTem.Domain/bin/Debug/netcoreapp2.0/ondeTem.Domain.pdb
+/home/rafael/_desenvolvimento/OndeTem/src/Server/ondeTem.Domain/bin/Debug/netcoreapp2.0/ondeTem.Domain.Core.dll
+/home/rafael/_desenvolvimento/OndeTem/src/Server/ondeTem.Domain/bin/Debug/netcoreapp2.0/ondeTem.Domain.Core.pdb
+/home/rafael/_desenvolvimento/OndeTem/src/Server/ondeTem.Domain/obj/Debug/netcoreapp2.0/ondeTem.Domain.csproj.CoreCompileInputs.cache
+/home/rafael/_desenvolvimento/OndeTem/src/Server/ondeTem.Domain/obj/Debug/netcoreapp2.0/ondeTem.Domain.AssemblyInfoInputs.cache
+/home/rafael/_desenvolvimento/OndeTem/src/Server/ondeTem.Domain/obj/Debug/netcoreapp2.0/ondeTem.Domain.AssemblyInfo.cs
+/home/rafael/_desenvolvimento/OndeTem/src/Server/ondeTem.Domain/obj/Debug/netcoreapp2.0/ondeTem.Domain.dll
+/home/rafael/_desenvolvimento/OndeTem/src/Server/ondeTem.Domain/obj/Debug/netcoreapp2.0/ondeTem.Domain.pdb
