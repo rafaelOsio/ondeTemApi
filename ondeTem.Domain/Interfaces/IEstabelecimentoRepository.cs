@@ -4,7 +4,7 @@ using ondeTem.Domain.EstabelecimentoRoot;
 
 namespace ondeTem.Domain.Interfaces
 {
-    public interface IEstabelecimentoRepository : IRepositoryBase<Estabelecimento>
+    public interface IEstabelecimentoRepository : IRepositoryBaseGeneric<Estabelecimento>
     {
         Task<Estabelecimento> AuthenticateAsync(EstabelecimentoUser item);
     }

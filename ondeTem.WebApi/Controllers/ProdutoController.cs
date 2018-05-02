@@ -39,7 +39,7 @@ namespace ondeTem.WebApi.Controllers
         {
             var token = Request.Headers["Authorization"];
             var userId = TokenGenerator.GetIdProfissional(token);
-            var item = await _produtoRepository.GetByIdAsync(id);
+            var item = await _produtoRepository.GetByIdAsync(id, userId);
 
             if(item == null)
                 return BadRequest(new {
@@ -109,7 +109,7 @@ namespace ondeTem.WebApi.Controllers
             {
                 var token = Request.Headers["Authorization"];
                 var userId = TokenGenerator.GetIdProfissional(token);
-                var response = await _produtoRepository.UpdateAsync(item);
+                var response = await _produtoRepository.UpdateAsync(item, userId);
 
                 if(response.Equals("success"))
                     return Ok(new {
@@ -138,12 +138,12 @@ namespace ondeTem.WebApi.Controllers
         {
             var token = Request.Headers["Authorization"];
             var userId = TokenGenerator.GetIdProfissional(token);
-            var item = await _produtoRepository.GetByIdAsync(id);
+            var item = await _produtoRepository.GetByIdAsync(id, userId);
             var response = "";
 
             if(item != null)
             {
-                response = await _produtoRepository.RemoveAsync(id);
+                response = await _produtoRepository.RemoveAsync(id, userId);
 
                 if(response.Equals("success"))
                     return Ok(new {

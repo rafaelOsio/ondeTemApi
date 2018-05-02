@@ -69,8 +69,7 @@ namespace ondeTem.WebApi.Controllers
                     return Ok(new {
                         status = HttpContext.Response.StatusCode,
                         message = "Cadastrado com sucesso.",
-                        data = item,
-                        token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
+                        data = item
                     });
 
                 return BadRequest(new {
