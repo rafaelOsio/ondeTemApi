@@ -51,6 +51,7 @@ namespace ondeTem.Data.Repositories
             return await Context.Produtos
                             .AsNoTracking()
                             .OrderByDescending(i => i.DataCadastro)
+                            .Include(i => i.Estabelecimento)
                             .ToListAsync();
         }
 
