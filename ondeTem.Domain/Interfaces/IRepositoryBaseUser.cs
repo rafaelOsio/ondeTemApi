@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ondeTem.Domain.Interfaces
 {
-    public interface  IRepositoryBaseGeneric<TEntity> : IDisposable where TEntity : class
+    public interface IRepositoryBaseUser<TEntity> : IDisposable where TEntity : class
     {
         Task<string> AddAsync(TEntity obj);
 

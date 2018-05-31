@@ -11,8 +11,8 @@ using System;
 namespace ondeTem.Data.Migrations
 {
     [DbContext(typeof(OndeTemContext))]
-    [Migration("20180421150300_removerCampoPrecoEmProdutos")]
-    partial class removerCampoPrecoEmProdutos
+    [Migration("20180502212215_sprint1")]
+    partial class sprint1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,12 +49,10 @@ namespace ondeTem.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Bairro")
-                        .IsRequired()
                         .HasColumnType("varchar(65)")
                         .HasMaxLength(65);
 
                     b.Property<string>("CaminhoImage")
-                        .IsRequired()
                         .HasColumnType("varchar(200)")
                         .HasMaxLength(200);
 
@@ -70,33 +68,41 @@ namespace ondeTem.Data.Migrations
                         .HasColumnType("bool")
                         .HasDefaultValue(false);
 
-                    b.Property<decimal?>("Latitude")
-                        .IsRequired();
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100);
 
-                    b.Property<decimal?>("Longitude")
-                        .IsRequired();
+                    b.Property<bool?>("IsAdmin")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
+
+                    b.Property<decimal?>("Latitude");
+
+                    b.Property<decimal?>("Longitude");
 
                     b.Property<string>("MensagemParaClientes")
                         .HasColumnType("varchar(400)")
                         .HasMaxLength(400);
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("varchar(65)")
                         .HasMaxLength(65);
 
                     b.Property<string>("Numero")
-                        .IsRequired()
                         .HasColumnType("varchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<string>("Rua")
+                    b.Property<byte[]>("PasswordHash")
                         .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(null);
+
+                    b.Property<string>("Rua")
                         .HasColumnType("varchar(65)")
                         .HasMaxLength(65);
 
                     b.Property<string>("TelefonePrincipal")
-                        .IsRequired()
                         .HasColumnType("varchar(14)")
                         .HasMaxLength(14);
 
@@ -104,11 +110,14 @@ namespace ondeTem.Data.Migrations
                         .HasColumnType("varchar(14)")
                         .HasMaxLength(14);
 
-                    b.Property<long>("UserId");
+                    b.Property<bool?>("isComplete")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("estabelecimentos");
                 });
@@ -121,7 +130,6 @@ namespace ondeTem.Data.Migrations
                     b.Property<int>("Acessos");
 
                     b.Property<string>("CaminhoImage")
-                        .IsRequired()
                         .HasColumnType("varchar(200)")
                         .HasMaxLength(200);
 
@@ -148,39 +156,6 @@ namespace ondeTem.Data.Migrations
                     b.HasIndex("EstabelecimentoId");
 
                     b.ToTable("produtos");
-                });
-
-            modelBuilder.Entity("ondeTem.Domain.UserRoot.User", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<bool?>("IsAdmin")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(false);
-
-                    b.Property<byte[]>("PasswordHash")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.ToTable("users");
-                });
-
-            modelBuilder.Entity("ondeTem.Domain.EstabelecimentoRoot.Estabelecimento", b =>
-                {
-                    b.HasOne("ondeTem.Domain.UserRoot.User", "User")
-                        .WithMany("Estabelecimentos")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ondeTem.Domain.ProdutoRoot.Produto", b =>

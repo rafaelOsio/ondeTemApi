@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,8 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using ondeTem.Data.Context;
@@ -21,6 +15,7 @@ using ondeTem.Domain.CategoriaRoot;
 using ondeTem.Domain.EstabelecimentoRoot;
 using ondeTem.Domain.Interfaces;
 using ondeTem.Domain.ProdutoRoot;
+using ondeTem.Domain.StoryRoot;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace ondeTem.WebApi
@@ -84,11 +79,13 @@ namespace ondeTem.WebApi
             services.AddScoped<IValidator<Categoria>, CategoriaValidator>();
             services.AddScoped<IValidator<Produto>, ProdutoValidator>();
             services.AddScoped<IValidator<EstabelecimentoUser>, EstabelecimentoUserValidator>();
+            services.AddScoped<IValidator<Story>, StoryValidator>();
 
             //Interface -> Repository
             services.AddScoped<IEstabelecimentoRepository, EstabelecimentoRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IStoryRepository, StoryRepository>();
 
             services.AddDbContext<OndeTemContext>(
                 x => x.UseMySql(Configuration.GetConnectionString("DefaultConnection")));

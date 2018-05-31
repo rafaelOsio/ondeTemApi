@@ -37,12 +37,6 @@ namespace ondeTem.Domain.EstabelecimentoRoot
             RuleFor(i => i.Complemento).MaximumLength(65)
                                 .WithMessage("O campo 'Complemento' aceita apenas 65 caracteres.");
 
-            RuleFor(i => i.Latitude).NotEmpty()
-                                .WithMessage("O campo 'Latitude' é obrigatório.");
-
-            RuleFor(i => i.Longitude).NotEmpty()
-                                .WithMessage("O campo 'Longitude' é obrigatório.");
-
             RuleFor(i => i.TelefonePrincipal).NotEmpty()
                                 .WithMessage("O campo 'Telefone principal' é obrigatório.")
                             .MaximumLength(14)

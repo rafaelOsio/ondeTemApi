@@ -4,23 +4,21 @@ using System.Collections.Generic;
 
 namespace ondeTem.Data.Migrations
 {
-    public partial class produtoImages : Migration
+    public partial class campoPrecoProduto : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "CaminhoImage",
+            migrationBuilder.AddColumn<decimal>(
+                name: "Preco",
                 table: "produtos",
-                type: "varchar(200)",
-                maxLength: 200,
-                nullable: false,
-                defaultValue: "");
+                type: "decimal(12,2)",
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "CaminhoImage",
+                name: "Preco",
                 table: "produtos");
         }
     }

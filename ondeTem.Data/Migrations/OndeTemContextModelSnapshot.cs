@@ -148,6 +148,9 @@ namespace ondeTem.Data.Migrations
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<decimal?>("Preco")
+                        .HasColumnType("decimal(12,2)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoriaId");
@@ -155,6 +158,33 @@ namespace ondeTem.Data.Migrations
                     b.HasIndex("EstabelecimentoId");
 
                     b.ToTable("produtos");
+                });
+
+            modelBuilder.Entity("ondeTem.Domain.StoryRoot.Story", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CaminhoImage")
+                        .HasColumnType("varchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<long>("CategoriaId");
+
+                    b.Property<DateTime>("DataFinalPostagem");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<byte[]>("ImageHash");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId");
+
+                    b.ToTable("stories");
                 });
 
             modelBuilder.Entity("ondeTem.Domain.ProdutoRoot.Produto", b =>
@@ -167,6 +197,14 @@ namespace ondeTem.Data.Migrations
                     b.HasOne("ondeTem.Domain.EstabelecimentoRoot.Estabelecimento", "Estabelecimento")
                         .WithMany("Produtos")
                         .HasForeignKey("EstabelecimentoId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ondeTem.Domain.StoryRoot.Story", b =>
+                {
+                    b.HasOne("ondeTem.Domain.CategoriaRoot.Categoria", "Categoria")
+                        .WithMany("Stories")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618

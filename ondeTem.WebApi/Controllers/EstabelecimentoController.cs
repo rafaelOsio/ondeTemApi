@@ -18,7 +18,8 @@ namespace ondeTem.WebApi.Controllers
             _estabelecimentoRepository = estabelecimentoRepository;
         }
 
-        [Authorize]
+        //[Authorize]
+        [HttpGet]
         public async Task<IActionResult> GetAll(int userId)
         {
             var item = await _estabelecimentoRepository.GetAllAsync();
@@ -26,7 +27,7 @@ namespace ondeTem.WebApi.Controllers
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
                 data = item,
-                token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
+                //token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
             });
         }
 

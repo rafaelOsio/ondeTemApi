@@ -18,18 +18,41 @@ namespace ondeTem.WebApi.Controllers
             _produtoRepository = produtoRepository;
         }
 
-        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> GetAllAsync(int id)
+        {
+            //var token = Request.Headers["Authorization"];
+            //var userId = TokenGenerator.GetIdProfissional(token);
+            var item = await _produtoRepository.GetAllAsync();
+            return Ok(new {
+                status = HttpContext.Response.StatusCode,
+                data = item,
+                //token = TokenGenerator.ReBuildToken(token)
+            });
+        }
+
         [HttpGet("GetAllByEstabelecimento/{id}")]
         public async Task<IActionResult> GetAllByEstabelecimentoAsync(int id)
         {
-            var token = Request.Headers["Authorization"];
-            var userId = TokenGenerator.GetIdProfissional(token);
+            //var token = Request.Headers["Authorization"];
+            //var userId = TokenGenerator.GetIdProfissional(token);
             var item = await _produtoRepository.GetAllByEstabelecimentoAsync(id);
 
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
                 data = item,
-                token = TokenGenerator.ReBuildToken(token)
+                //token = TokenGenerator.ReBuildToken(token)
+            });
+        }
+
+        [HttpGet("GetDestaques")]
+        public async Task<IActionResult> GetDestaquesAsync()
+        {
+            var item = await _produtoRepository.GetDestaques();
+
+            return Ok(new {
+                status = HttpContext.Response.StatusCode,
+                data = item,
             });
         }
 
@@ -54,7 +77,7 @@ namespace ondeTem.WebApi.Controllers
             });
         }
 
-        [Authorize]
+        
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody]Produto item)
         {
@@ -89,7 +112,7 @@ namespace ondeTem.WebApi.Controllers
             });
         }
 
-        [Authorize]
+        
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(int id, [FromBody]Produto item)
         {
@@ -132,7 +155,7 @@ namespace ondeTem.WebApi.Controllers
             });
         }
 
-        [Authorize]
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {

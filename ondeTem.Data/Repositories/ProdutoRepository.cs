@@ -46,6 +46,14 @@ namespace ondeTem.Data.Repositories
         public Task<List<Produto>> GetAllAsync(long estabelecimentoId)
         { throw new System.NotImplementedException(); }
 
+        public async Task<List<Produto>> GetAllAsync()
+        {
+            return await Context.Produtos
+                            .AsNoTracking()
+                            .OrderByDescending(i => i.DataCadastro)
+                            .ToListAsync();
+        }
+
         public async Task<List<Produto>> GetAllByEstabelecimentoAsync(long id)
         {
             return await Context.Produtos
@@ -59,6 +67,14 @@ namespace ondeTem.Data.Repositories
         {
             return await Context.Produtos
                     .SingleOrDefaultAsync(i => i.Id == id);
+        }
+
+        public async Task<List<Produto>> GetDestaques()
+        {
+            return await Context.Produtos
+                            .OrderByDescending(i => i.Acessos)
+                            .Take(3)
+                            .ToListAsync();
         }
 
         public async Task<string> RemoveAsync(long id, long estabelecimentoId)

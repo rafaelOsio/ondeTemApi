@@ -51,10 +51,14 @@ namespace ondeTem.Data.Repositories
         {
             var obj = await Context.Categorias
                                     .Include(i => i.Produtos)
+                                    .Include(i => i.Stories)
                                     .SingleOrDefaultAsync(i => i.Id == id);
 
             if(obj.Produtos.Count > 0)
                 return "Não é possível remover uma categoria que possua produtos cadastrados.";
+
+            if(obj.Stories.Count > 0)
+                return "Não é possível remover uma categoria que possua stories cadastradas.";
 
             Context.Categorias.Remove(obj);
             await SaveChangesAsync();

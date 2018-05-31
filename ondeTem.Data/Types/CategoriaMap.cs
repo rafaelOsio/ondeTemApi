@@ -26,6 +26,10 @@ namespace ondeTem.Data.Types
             builder.HasMany(i => i.Produtos)
                 .WithOne(i => i.Categoria)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(i => i.Stories)
+                .WithOne(i => i.Categoria)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

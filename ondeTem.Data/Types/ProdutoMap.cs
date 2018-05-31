@@ -28,6 +28,9 @@ namespace ondeTem.Data.Types
             builder.Property(i => i.CaminhoImage)
                 .HasColumnType("varchar(200)")
                 .HasMaxLength(200);
+
+            builder.Property(i => i.Preco)
+                .HasColumnType("decimal(12,2)");
         }
     }
 }

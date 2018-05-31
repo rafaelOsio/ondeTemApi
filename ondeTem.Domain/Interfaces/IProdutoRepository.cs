@@ -7,5 +7,7 @@ namespace ondeTem.Domain.Interfaces
     public interface IProdutoRepository : IRepositoryBase<Produto>
     {
         Task<List<Produto>> GetAllByEstabelecimentoAsync(long id);
+        Task<List<Produto>> GetDestaques();
+        Task<List<Produto>> GetAllAsync();
     }
 }
