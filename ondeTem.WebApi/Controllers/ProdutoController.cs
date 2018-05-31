@@ -21,27 +21,27 @@ namespace ondeTem.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAsync(int id)
         {
-            //var token = Request.Headers["Authorization"];
-            //var userId = TokenGenerator.GetIdProfissional(token);
+            var token = Request.Headers["Authorization"];
+            var userId = TokenGenerator.GetIdProfissional(token);
             var item = await _produtoRepository.GetAllAsync();
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
                 data = item,
-                //token = TokenGenerator.ReBuildToken(token)
+                token = TokenGenerator.ReBuildToken(token)
             });
         }
 
         [HttpGet("GetAllByEstabelecimento/{id}")]
         public async Task<IActionResult> GetAllByEstabelecimentoAsync(int id)
         {
-            //var token = Request.Headers["Authorization"];
-            //var userId = TokenGenerator.GetIdProfissional(token);
+            var token = Request.Headers["Authorization"];
+            var userId = TokenGenerator.GetIdProfissional(token);
             var item = await _produtoRepository.GetAllByEstabelecimentoAsync(id);
 
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
                 data = item,
-                //token = TokenGenerator.ReBuildToken(token)
+                token = TokenGenerator.ReBuildToken(token)
             });
         }
 
