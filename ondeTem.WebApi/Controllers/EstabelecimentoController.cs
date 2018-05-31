@@ -1,10 +1,13 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using bitti.tokenProvider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ondeTem.Domain.EstabelecimentoRoot;
 using ondeTem.Domain.Interfaces;
+using ondeTem.WebApi.ViewModel;
 
 namespace ondeTem.WebApi.Controllers
 {
@@ -12,22 +15,25 @@ namespace ondeTem.WebApi.Controllers
     public class EstabelecimentoController : Controller
     {
         private readonly IEstabelecimentoRepository _estabelecimentoRepository;
+        private readonly IMapper _mapper;
 
-        public EstabelecimentoController(IEstabelecimentoRepository estabelecimentoRepository)
+        public EstabelecimentoController(IEstabelecimentoRepository estabelecimentoRepository, IMapper mapper)
         {
             _estabelecimentoRepository = estabelecimentoRepository;
+            _mapper = mapper;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll(int userId)
         {
             var item = await _estabelecimentoRepository.GetAllAsync();
+            var itemVM = _mapper.Map<List<EstabelecimentoViewModel>>(item);
 
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
-                data = item,
-                //token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
+                data = itemVM,
+                token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
             });
         }
 
@@ -38,6 +44,7 @@ namespace ondeTem.WebApi.Controllers
             var token = Request.Headers["Authorization"];
             var userId = TokenGenerator.GetIdProfissional(token);
             var item = await _estabelecimentoRepository.GetByIdAsync(id);
+            var itemVM = _mapper.Map<EstabelecimentoViewModel>(item);
 
             if(item == null)
                 return BadRequest(new {
@@ -47,7 +54,7 @@ namespace ondeTem.WebApi.Controllers
 
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
-                data = item,
+                data = itemVM,
                 token = TokenGenerator.ReBuildToken(token)
             });
         }
@@ -208,6 +215,5 @@ namespace ondeTem.WebApi.Controllers
 
             return estabelecimento;
         }
-
     }
 }

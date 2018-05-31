@@ -1,10 +1,13 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using bitti.tokenProvider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ondeTem.Domain.Interfaces;
 using ondeTem.Domain.ProdutoRoot;
+using ondeTem.WebApi.ViewModel;
 
 namespace ondeTem.WebApi.Controllers
 {
@@ -12,36 +15,37 @@ namespace ondeTem.WebApi.Controllers
     public class ProdutoController : Controller
     {
         private readonly IProdutoRepository _produtoRepository;
+        private readonly IMapper _mapper;
 
-        public ProdutoController(IProdutoRepository produtoRepository)
+        public ProdutoController(IProdutoRepository produtoRepository, IMapper mapper)
         {
             _produtoRepository = produtoRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllAsync(int id)
         {
-            var token = Request.Headers["Authorization"];
-            var userId = TokenGenerator.GetIdProfissional(token);
             var item = await _produtoRepository.GetAllAsync();
+            var itemVM = _mapper.Map<List<ProdutoViewModel>>(item);
+
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
-                data = item,
-                token = TokenGenerator.ReBuildToken(token)
+                data = itemVM,
+                token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
             });
         }
 
         [HttpGet("GetAllByEstabelecimento/{id}")]
         public async Task<IActionResult> GetAllByEstabelecimentoAsync(int id)
         {
-            var token = Request.Headers["Authorization"];
-            var userId = TokenGenerator.GetIdProfissional(token);
             var item = await _produtoRepository.GetAllByEstabelecimentoAsync(id);
+            var itemVM = _mapper.Map<List<ProdutoViewModel>>(item);
 
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
-                data = item,
-                token = TokenGenerator.ReBuildToken(token)
+                data = itemVM,
+                token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
             });
         }
 
@@ -49,10 +53,12 @@ namespace ondeTem.WebApi.Controllers
         public async Task<IActionResult> GetDestaquesAsync()
         {
             var item = await _produtoRepository.GetDestaques();
+            var itemVM = _mapper.Map<List<ProdutoViewModel>>(item);
 
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
-                data = item,
+                data = itemVM,
+                token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
             });
         }
 
@@ -63,7 +69,8 @@ namespace ondeTem.WebApi.Controllers
             var token = Request.Headers["Authorization"];
             var userId = TokenGenerator.GetIdProfissional(token);
             var item = await _produtoRepository.GetByIdAsync(id, userId);
-
+            var itemVM = _mapper.Map<List<ProdutoViewModel>>(item);
+            
             if(item == null)
                 return BadRequest(new {
                     status = 400,
@@ -72,7 +79,7 @@ namespace ondeTem.WebApi.Controllers
 
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
-                data = item,
+                data = itemVM,
                 token = TokenGenerator.ReBuildToken(token)
             });
         }

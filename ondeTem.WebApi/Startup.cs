@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -32,6 +33,8 @@ namespace ondeTem.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper();
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {

@@ -1,10 +1,13 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using bitti.tokenProvider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ondeTem.Domain.CategoriaRoot;
 using ondeTem.Domain.Interfaces;
+using ondeTem.WebApi.ViewModel;
 
 namespace ondeTem.WebApi.Controllers
 {
@@ -12,10 +15,12 @@ namespace ondeTem.WebApi.Controllers
     public class CategoriaController : Controller
     {
         private readonly ICategoriaRepository _categoriaRepository;
+        private readonly IMapper _mapper;
 
-        public CategoriaController(ICategoriaRepository categoriaRepository)
+        public CategoriaController(ICategoriaRepository categoriaRepository, IMapper mapper)
         {
             _categoriaRepository = categoriaRepository;
+            _mapper = mapper;
         }
 
         [Authorize]
@@ -23,10 +28,11 @@ namespace ondeTem.WebApi.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
             var item = await _categoriaRepository.GetAllAsync();
+            var itemVM = _mapper.Map<List<CategoriaViewModel>>(item);
 
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
-                data = item,
+                data = itemVM,
                 token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
             });
         }
@@ -36,6 +42,7 @@ namespace ondeTem.WebApi.Controllers
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             var item = await _categoriaRepository.GetByIdAsync(id);
+            var itemVM = _mapper.Map<CategoriaViewModel>(item);
 
             if(item == null)
                 return BadRequest(new {
@@ -45,7 +52,7 @@ namespace ondeTem.WebApi.Controllers
 
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
-                data = item,
+                data = itemVM,
                 token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
             });
         }
