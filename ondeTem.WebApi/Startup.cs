@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -111,7 +112,7 @@ namespace ondeTem.WebApi
 
             app.UseMvc();
 
-            /*var optionsBuilder = new DbContextOptionsBuilder<OndeTemContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<OndeTemContext>();
             optionsBuilder.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
             var db = new OndeTemContext(optionsBuilder.Options);
             var TotalMigrations = db.Database.GetMigrations();
@@ -119,7 +120,7 @@ namespace ondeTem.WebApi
             if (AppliedMigrations.Count() < TotalMigrations.Count())
             {
                 db.Database.Migrate();
-            }*/
+            }
         }
     }
 }
