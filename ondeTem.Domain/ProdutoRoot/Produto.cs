@@ -12,7 +12,6 @@ namespace ondeTem.Domain.ProdutoRoot
         public string Descricao { get; set; }
         public decimal? Preco { get; set; }
         public DateTime DataCadastro { get; set; }
-        public byte[] ImageHash { get; set; }
         public string CaminhoImage { get; set; }
         public Estabelecimento Estabelecimento { get; set; }
         public long EstabelecimentoId { get; set; }

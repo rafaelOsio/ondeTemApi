@@ -69,7 +69,7 @@ namespace ondeTem.WebApi.Controllers
             var token = Request.Headers["Authorization"];
             var userId = TokenGenerator.GetIdProfissional(token);
             var item = await _produtoRepository.GetByIdAsync(id, userId);
-            var itemVM = _mapper.Map<List<ProdutoViewModel>>(item);
+            var itemVM = _mapper.Map<ProdutoViewModel>(item);
             
             if(item == null)
                 return BadRequest(new {

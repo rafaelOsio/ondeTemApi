@@ -11,6 +11,11 @@ namespace ondeTem.Domain.ProdutoRoot
                             .MaximumLength(100)
                                 .WithMessage("O campo 'Nome' aceita apenas 100 caracteres.");
 
+            RuleFor(i => i.CaminhoImage).NotEmpty()
+                                .WithMessage("O campo 'CaminhoImage' é obrigatório.")
+                            .MaximumLength(200)
+                                .WithMessage("O campo 'CaminhoImage' aceita apenas 200 caracteres.");
+
             RuleFor(i => i.Descricao).MaximumLength(500)
                                 .WithMessage("O campo 'Descrição' aceita apenas 500 caracteres.");
                         

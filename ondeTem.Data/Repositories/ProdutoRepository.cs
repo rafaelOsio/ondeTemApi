@@ -24,12 +24,6 @@ namespace ondeTem.Data.Repositories
         {
             obj.DataCadastro = DateTime.Now;
 
-            if(obj.ImageHash != null && obj.ImageHash.Equals(""))
-            {
-                obj.CaminhoImage = Guid.NewGuid().ToString();
-                Util.InsertImage(obj.CaminhoImage, obj.ImageHash);
-            }
-
             Context.Entry(obj).State = EntityState.Added;
 
             await SaveChangesAsync();
@@ -98,24 +92,6 @@ namespace ondeTem.Data.Repositories
 
         public async Task<string> UpdateAsync(Produto obj, long estabelecimentoId)
         {
-            var produto = await Context.Produtos
-                            .SingleOrDefaultAsync(i => i.Id == obj.Id);
-
-            if(obj.ImageHash == null)
-            {
-                obj.ImageHash = produto.ImageHash;
-            }
-            else
-            {
-                if(produto.CaminhoImage != null)
-                    Util.RemoveImage(produto.CaminhoImage);
-                else
-                    obj.CaminhoImage = Guid.NewGuid().ToString();
-                
-                Util.InsertImage(obj.CaminhoImage, obj.ImageHash);
-            }
-            
-            Context.Entry(produto).State = EntityState.Detached;
             Context.Entry(obj).State = EntityState.Modified;
             await SaveChangesAsync();
 

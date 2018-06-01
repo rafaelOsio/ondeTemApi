@@ -23,8 +23,6 @@ namespace ondeTem.Data.Types
                 .HasColumnType("datetime")
                 .IsRequired();
 
-            builder.Ignore(i => i.ImageHash);
-
             builder.Property(i => i.CaminhoImage)
                 .HasColumnType("varchar(200)")
                 .HasMaxLength(200);
