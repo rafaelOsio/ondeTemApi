@@ -58,7 +58,18 @@ namespace ondeTem.WebApi.Controllers
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
                 data = itemVM,
-                token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
+            });
+        }
+
+        [HttpGet("GetAdicionadosRecentemente")]
+        public async Task<IActionResult> GetAdicionadosRecentemente()
+        {
+            var item = await _produtoRepository.GetAdicionadosRecentemente();
+            var itemVM = _mapper.Map<List<ProdutoViewModel>>(item);
+
+            return Ok(new {
+                status = HttpContext.Response.StatusCode,
+                data = itemVM,
             });
         }
 

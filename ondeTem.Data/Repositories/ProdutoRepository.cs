@@ -37,6 +37,14 @@ namespace ondeTem.Data.Repositories
             GC.SuppressFinalize(this);
         }
 
+        public async Task<List<Produto>> GetAdicionadosRecentemente()
+        {
+            return await Context.Produtos
+                            .OrderByDescending(i => i.DataCadastro)
+                            .Take(3)
+                            .ToListAsync();
+        }
+
         public Task<List<Produto>> GetAllAsync(long estabelecimentoId)
         { throw new System.NotImplementedException(); }
 

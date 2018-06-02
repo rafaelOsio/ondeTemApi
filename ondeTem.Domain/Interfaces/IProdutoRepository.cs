@@ -8,6 +8,7 @@ namespace ondeTem.Domain.Interfaces
     {
         Task<List<Produto>> GetAllByEstabelecimentoAsync(long id);
         Task<List<Produto>> GetDestaques();
+        Task<List<Produto>> GetAdicionadosRecentemente();
         Task<List<Produto>> GetAllAsync();
     }
 }
