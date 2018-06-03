@@ -59,7 +59,6 @@ namespace ondeTem.WebApi.Controllers
             });
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody]EstabelecimentoUser item)
         {
@@ -170,7 +169,6 @@ namespace ondeTem.WebApi.Controllers
             }            
         }
 
-        [AllowAnonymous]
         [HttpPost("authenticate")]
         public async Task<IActionResult> AuthenticateAsync([FromBody]EstabelecimentoUser item)
         {

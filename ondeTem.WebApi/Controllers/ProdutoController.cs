@@ -32,7 +32,6 @@ namespace ondeTem.WebApi.Controllers
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
                 data = itemVM,
-                token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
             });
         }
 
@@ -45,7 +44,6 @@ namespace ondeTem.WebApi.Controllers
             return Ok(new {
                 status = HttpContext.Response.StatusCode,
                 data = itemVM,
-                token = TokenGenerator.ReBuildToken(Request.Headers["Authorization"])
             });
         }
 
@@ -73,7 +71,6 @@ namespace ondeTem.WebApi.Controllers
             });
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
@@ -95,7 +92,7 @@ namespace ondeTem.WebApi.Controllers
             });
         }
 
-        
+        [Authorize]        
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody]Produto item)
         {
@@ -130,7 +127,7 @@ namespace ondeTem.WebApi.Controllers
             });
         }
 
-        
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(int id, [FromBody]Produto item)
         {
@@ -173,7 +170,7 @@ namespace ondeTem.WebApi.Controllers
             });
         }
 
-        
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
