@@ -69,6 +69,8 @@ namespace ondeTem.Data.Repositories
         public async Task<Produto> GetByIdAsync(long id, long estabelecimentoId)
         {
             return await Context.Produtos
+                    .Include(i => i.Estabelecimento)
+                    .Where(i => i.EstabelecimentoId == estabelecimentoId)
                     .SingleOrDefaultAsync(i => i.Id == id);
         }
 
